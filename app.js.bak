@@ -1,0 +1,68 @@
+const express = require('express');
+const app = express();
+const path = require('path');
+const multer = require('multer');
+
+//Static files
+app.use(express.static('public'));
+
+//Filte
+r
+function checkFileType(file, cb) {
+    const filter = /jpeg|jpg|png|gif/;
+    const extention = filter.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = filter.test(file.mimeType);
+
+    if (mimetype && extention) {
+        return cb(null, true);
+    } else {
+        console.log("Dateifehler");
+        cb('Error: False filetype')
+    }
+}
+
+//Storage
+const storage = multer.diskStorage({
+    destination: './files/',
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+//Frontend
+app.get('/', function (req, res) {
+    res.send("Hallo Welt!");
+});
+
+//Upload function
+const upload = multer({
+    storage: storage,
+    fileFilter: function(res, file, cb) {
+        checkFileType(res, file, cb);
+    }
+}).single('');
+
+//Upload file
+app.post('/api/files', (req, res) => {
+    upload(req, res, (err) => {
+       if (err) {
+           console.log("Fehler erkannt, " + err);
+           res.sendStatus(404);
+       } else {
+           console.log("Erfolg!");
+           res.sendStatus(201);
+       }
+    });
+});
+
+//Localhost
+app.listen(process.env.PORT || 80, function () {
+    console.log("Server listens");
+});
+
+
+
+
+
+
+
