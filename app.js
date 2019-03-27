@@ -3,13 +3,16 @@ const multer = require('multer');
 const path = require('path');
 const gm = require('gm');
 
+
+
 // Set The Storage Engine
 const storage = multer.diskStorage({
-    destination: './files',
+    destination: './files',                             // Where the file will be saved
     filename: function(req, file, cb){
-        cb(null, "OriginalImg_" + file.originalname); // This is the filename that will be saved
+        cb(null, "OriginalImg_" + file.originalname);   // This is the filename that will be saved
     }
 });
+
 
 // Init Upload
 const upload = multer({
@@ -35,16 +38,17 @@ function checkFileType(file, cb){
     }
 }
 
-// Init app
+// App
 const app = express();
+app.use('/files', express.static(__dirname + '/files'));  // The images are public they can be seen on the web
+app.listen(process.env.PORT || 80, () => console.log('Server started'));
 
 
-// Public Folder
-app.use('/files', express.static(__dirname + '/files'));
-
+// Frontend
 app.get('/', (req, res) => res.send("Hello World"));
 
-app.post('/api/files', (req, res) => {
+
+app.post('/api/file', (req, res) => {
     upload(req, res, (err) => {
         if(err){
           res.sendStatus(400)
@@ -60,31 +64,15 @@ const mySizes = [720, 1280, 1920];
 const myImgSizeNames = ['small_', 'medium_', 'big_'];
 
 function resizeImage(req, res){
-        let promiseImg = new Promise((resolve, reject) => {     // Promise is needed, because it is async.
             for (var i = 0; i < 3; i++) {
-                console.log(myImgSizeNames[i] + " " + mySizes[i] + ' ' + req.file.originalname)
-                gm('./files/OriginalImg_' + req.file.originalname)
-                    //console.log(myImgSizeNames[i] + " " + mySizes[i] + ' ' + req.file.originalname)
-                    .resize(mySizes[i])
-                    .write('./files/' + myImgSizeNames[i] + req.file.originalname, function (err) {
+                gm('./files/OriginalImg_' + req.file.originalname)                                      // It takes the current uploaded file
+                    .resize(mySizes[i])                                                                 // Changes the height to 720/1280/1920 px
+                    .write('./files/' + myImgSizeNames[i] + req.file.originalname, function (err) {     // Rename the created image (small, medium and big)
                         if (err) {
-                            reject(err);
                             console.log(err);
                         } else {
-                            resolve(true);
-                            console.log("Image created for");
+                            console.log("Image created");
                         }
                     })
             }
-        });
-    Promise.all([promiseImg]).then(values => {
-        console.log("Erfolg!"); // All Promises are True
-    }, reason => {
-        console.log("There was an Error!") // All Promises are False
-    });
-
     }
-
-
-
-app.listen(process.env.PORT || 80, () => console.log('Server started'));
