@@ -42,7 +42,7 @@ const app = express();
 // Public Folder
 app.use('/files', express.static(__dirname + '/files'));
 
-app.get('/', (req, res) => res.send("Hello World!"));
+app.get('/', (req, res) => res.send("Hello World"));
 
 app.post('/api/files', (req, res) => {
     upload(req, res, (err) => {
@@ -55,44 +55,29 @@ app.post('/api/files', (req, res) => {
     });
 });
 
+
+const mySizes = [720, 1280, 1920];
+const myImgSizeNames = ['small_', 'medium_', 'big_'];
+
 function resizeImage(req, res){
-        let smallImage = new Promise((resolve, reject) => {     // Promise is needed, because it is async.
-            gm('./files/OriginalImg_' + req.file.originalname) // Get Image from folder
-                .resize(720)
-                .write('./files/' + 'small_' + req.file.originalname, function (err) {  // Create Img
-                    if (err) {  // Promise is false
-                        reject(err);
-                        console.log(err);
-                    } else { // Promise is true
-                        resolve(true);
-                    }
-                })
+        let promiseImg = new Promise((resolve, reject) => {     // Promise is needed, because it is async.
+            for (var i = 0; i < 3; i++) {
+                console.log(myImgSizeNames[i] + " " + mySizes[i] + ' ' + req.file.originalname)
+                gm('./files/OriginalImg_' + req.file.originalname)
+                    //console.log(myImgSizeNames[i] + " " + mySizes[i] + ' ' + req.file.originalname)
+                    .resize(mySizes[i])
+                    .write('./files/' + myImgSizeNames[i] + req.file.originalname, function (err) {
+                        if (err) {
+                            reject(err);
+                            console.log(err);
+                        } else {
+                            resolve(true);
+                            console.log("Image created for");
+                        }
+                    })
+            }
         });
-        let mediumImage = new Promise((resolve, reject) => {
-            gm('./files/OriginalImg_' + req.file.originalname)
-                .resize(1280)
-                .write('./files/' + 'medium_' + req.file.originalname, function (err) {
-                    if (err) {
-                        reject(err);
-                        console.log("Error: " + err);
-                    } else {
-                        resolve(true);
-                    }
-                })
-        });
-        let bigImage = new Promise((resolve, reject) => {
-            gm('./files/OriginalImg_' + req.file.originalname)
-                .resize(1920)
-                .write('./files/' + 'big_' + req.file.originalname, function (err) {
-                    if (err) {
-                        reject(err);
-                        console.log(err);
-                    } else {
-                        resolve(true);
-                    }
-                })
-        });
-    Promise.all([smallImage, mediumImage, bigImage]).then(values => {
+    Promise.all([promiseImg]).then(values => {
         console.log("Erfolg!"); // All Promises are True
     }, reason => {
         console.log("There was an Error!") // All Promises are False
