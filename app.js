@@ -7,7 +7,7 @@ const gm = require('gm');
 const storage = multer.diskStorage({
     destination: './files',
     filename: function(req, file, cb){
-        cb(null, "OriginalImg_" + file.originalname);
+        cb(null, "OriginalImg_" + file.originalname); // This is the filename that will be saved
     }
 });
 
@@ -21,7 +21,7 @@ const upload = multer({
 
 // Check File Type
 function checkFileType(file, cb){
-    // Allowed ext
+    // Allowed ext (regex)
     const filetypes = /jpeg|jpg|png|gif/;
     // Check ext
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
@@ -42,8 +42,6 @@ const app = express();
 // Public Folder
 app.use('/files', express.static(__dirname + '/files'));
 
-
-
 app.get('/', (req, res) => res.send("Hello World!"));
 
 app.post('/api/files', (req, res) => {
@@ -58,14 +56,14 @@ app.post('/api/files', (req, res) => {
 });
 
 function resizeImage(req, res){
-        let smallImage = new Promise((resolve, reject) => {
-            gm('./files/OriginalImg_' + req.file.originalname)
+        let smallImage = new Promise((resolve, reject) => {     // Promise is needed, because it is async.
+            gm('./files/OriginalImg_' + req.file.originalname) // Get Image from folder
                 .resize(720)
-                .write('./files/' + 'small_' + req.file.originalname, function (err) {
-                    if (err) {
+                .write('./files/' + 'small_' + req.file.originalname, function (err) {  // Create Img
+                    if (err) {  // Promise is false
                         reject(err);
-                        console.log("Error: " + err);
-                    } else {
+                        console.log(err);
+                    } else { // Promise is true
                         resolve(true);
                     }
                 })
@@ -95,9 +93,9 @@ function resizeImage(req, res){
                 })
         });
     Promise.all([smallImage, mediumImage, bigImage]).then(values => {
-        console.log("Erfolg!");
+        console.log("Erfolg!"); // All Promises are True
     }, reason => {
-        console.log("There was an Error!")
+        console.log("There was an Error!") // All Promises are False
     });
 
     }

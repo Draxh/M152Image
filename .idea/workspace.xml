@@ -46,7 +46,7 @@
         <counts>
           <entry key="ejs" value="33" />
           <entry key="gitignore" value="34" />
-          <entry key="js" value="2402" />
+          <entry key="js" value="2614" />
           <entry key="json" value="18" />
         </counts>
       </usages-collector>
@@ -54,7 +54,7 @@
         <counts>
           <entry key="EJS" value="33" />
           <entry key="JSON" value="18" />
-          <entry key="JavaScript" value="2402" />
+          <entry key="JavaScript" value="2614" />
           <entry key="PLAIN_TEXT" value="34" />
         </counts>
       </usages-collector>
@@ -74,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="108">
+              <caret line="61" column="101" selection-start-line="61" selection-start-column="101" selection-end-line="61" selection-end-column="101" />
             </state>
           </provider>
         </entry>
@@ -195,16 +195,15 @@
       <option name="presentableId" value="Default" />
       <updated>1553608406399</updated>
       <workItem from="1553608408460" duration="6343000" />
-      <workItem from="1553671762935" duration="6645000" />
+      <workItem from="1553671762935" duration="7885000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12988000" />
+    <option name="totallyTimeSpent" value="14228000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.122934565" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -278,8 +277,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        <state relative-caret-position="108">
+          <caret line="61" column="101" selection-start-line="61" selection-start-column="101" selection-end-line="61" selection-end-column="101" />
         </state>
       </provider>
     </entry>
