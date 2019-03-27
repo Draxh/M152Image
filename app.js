@@ -40,7 +40,9 @@ const app = express();
 
 
 // Public Folder
-app.use(express.static('./files'));
+app.use('/files', express.static(__dirname + '/files'));
+
+
 
 app.get('/', (req, res) => res.send("Hello World!"));
 
