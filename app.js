@@ -20,7 +20,7 @@ const upload = multer({
     fileFilter: function(req, file, cb){
         checkFileType(file, cb);
     }
-}).single('file');
+}).single('');
 
 // Check File Type
 function checkFileType(file, cb){
