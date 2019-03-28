@@ -9,18 +9,25 @@ const gm = require('gm');
 const storage = multer.diskStorage({
     destination: './files',                             // Where the file will be saved
     filename: function(req, file, cb){
-        cb(null, "OriginalImg_" + file.originalname);   // This is the filename that will be saved
+        cb(null, file.originalname);   // This is the filename that will be saved
     }
 });
 
 
 // Init Upload
-const upload = multer({
+const singleUpload = multer({
     storage: storage,
     fileFilter: function(req, file, cb){
         checkFileType(file, cb);
     }
-}).single('');
+}).single('file');
+
+const multiUpload = multer({
+    storage: storage,
+    fileFilter: function(req, file, cb){
+        checkFileType(file, cb);
+    }
+}).array('files', 20);
 
 // Check File Type
 function checkFileType(file, cb){
@@ -48,13 +55,27 @@ app.listen(process.env.PORT || 80, () => console.log('Server started'));
 app.get('/', (req, res) => res.send("Hello World"));
 
 
-app.post('/api/file', (req, res) => {
-    upload(req, res, (err) => {
+app.post('/api/file', (req, res) => {       // Single Upload
+    singleUpload(req, res, (err) => {
         if(err){
           res.sendStatus(400)
         } else {
             res.sendStatus(201);
-            resizeImage(req, res);
+            resizeImage(req.file, res);
+        }
+    });
+});
+
+app.post('/api/files', (req, res) => {      // Multi Upload
+    multiUpload(req, res, (err) => {
+        if(err){
+            res.sendStatus(400)
+        } else {
+            res.sendStatus(201);
+            console.log(req.files[0]);
+            for (var i = 0; i < req.files.length; i++) {
+                resizeImage(req.files[i], res);
+            }
         }
     });
 });
@@ -63,11 +84,11 @@ app.post('/api/file', (req, res) => {
 const mySizes = [720, 1280, 1920];
 const myImgSizeNames = ['small_', 'medium_', 'big_'];
 
-function resizeImage(req, res){
+function resizeImage(file, res){
             for (var i = 0; i < 3; i++) {
-                gm('./files/OriginalImg_' + req.file.originalname)                                      // It takes the current uploaded file
+                gm('./files/' + file.originalname)                                      // It takes the current uploaded file
                     .resize(mySizes[i])                                                                 // Changes the height to 720/1280/1920 px
-                    .write('./files/' + myImgSizeNames[i] + req.file.originalname, function (err) {     // Rename the created image (small, medium and big)
+                    .write('./files/' + myImgSizeNames[i] + file.originalname, function (err) {     // Rename the created image (small, medium and big)
                         if (err) {
                             console.log(err);
                         } else {
