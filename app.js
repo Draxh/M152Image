@@ -2,6 +2,8 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const gm = require('gm');
+const ejs = require('ejs');
+const fs = require('fs');
 
 
 
@@ -51,10 +53,6 @@ app.use('/files', express.static(__dirname + '/files'));  // The images are publ
 app.listen(process.env.PORT || 80, () => console.log('Server started'));
 
 
-// Frontend
-app.get('/', (req, res) => res.send("Hello World"));
-
-
 app.post('/api/file', (req, res) => {       // Single Upload
     singleUpload(req, res, (err) => {
         if(err){
@@ -97,3 +95,12 @@ function resizeImage(file, res){
                     })
             }
     }
+
+
+
+app.set('view engine', 'ejs');
+var myFiles = fs.readdirSync('./files/');
+
+app.get('*', function(req, res) {
+    res.render('index', {myFiles: myFiles})
+});
