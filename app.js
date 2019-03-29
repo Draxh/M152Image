@@ -99,8 +99,12 @@ function resizeImage(file, res){
 
 
 app.set('view engine', 'ejs');
-var myFiles = fs.readdirSync('./files/');
 
-app.get('*', function(req, res) {
-    res.render('index', {myFiles: myFiles})
+
+function getImages() {
+    return fs.readdirSync('./files/');
+}
+
+app.get('/image/gallery', function(req, res) {
+    res.render('index', {myFiles: getImages()})
 });
