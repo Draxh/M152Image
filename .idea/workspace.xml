@@ -2,7 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebf15f5e-54e2-454f-b13f-0182ab9b63d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/files/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/videoFiles/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/video.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/LogischerNetzwerkplan123V1.0.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/Yasuo_Fan_Art.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/abcxyz.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/big_LogischerNetzwerkplan123V1.0.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/big_Yasuo_Fan_Art.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/big_abcxyz.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/big_girl.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/big_marioAndCo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/girl.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/marioAndCo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/medium_LogischerNetzwerkplan123V1.0.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/medium_Yasuo_Fan_Art.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/medium_abcxyz.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/medium_girl.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/medium_marioAndCo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/small_LogischerNetzwerkplan123V1.0.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/small_Yasuo_Fan_Art.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/small_abcxyz.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/small_girl.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/small_marioAndCo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -18,48 +44,49 @@
     <session id="1053198842">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="bak" value="1" />
-          <entry key="ejs" value="3" />
+          <entry key="ejs" value="4" />
           <entry key="gitignore" value="1" />
+          <entry key="gitkeep" value="2" />
           <entry key="jpeg" value="4" />
-          <entry key="js" value="2" />
+          <entry key="js" value="3" />
           <entry key="json" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="EJS" value="3" />
+          <entry key="EJS" value="4" />
           <entry key="Image" value="4" />
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="2" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="JavaScript" value="3" />
+          <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="ejs" value="224" />
+          <entry key="ejs" value="291" />
           <entry key="gitignore" value="34" />
-          <entry key="js" value="4011" />
+          <entry key="js" value="4402" />
           <entry key="json" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="EJS" value="224" />
+          <entry key="EJS" value="291" />
           <entry key="JSON" value="18" />
-          <entry key="JavaScript" value="4011" />
+          <entry key="JavaScript" value="4402" />
           <entry key="PLAIN_TEXT" value="34" />
         </counts>
       </usages-collector>
@@ -76,21 +103,45 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+            <state relative-caret-position="276">
+              <caret line="130" column="42" selection-start-line="130" selection-start-column="42" selection-end-line="130" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/fluent-ffmpeg/lib/options/inputs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2668">
+              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/videoFiles/.gitkeep">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="159">
+              <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/video.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-276" />
           </provider>
         </entry>
       </file>
@@ -131,8 +182,9 @@
         <option value="$PROJECT_DIR$/Views/index.ejs" />
         <option value="$PROJECT_DIR$/app.js.bak" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/views/video.ejs" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -153,9 +205,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="-8" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -179,7 +231,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LB1_Teil1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
@@ -217,18 +269,18 @@
       <workItem from="1553709872692" duration="587000" />
       <workItem from="1553758551710" duration="2538000" />
       <workItem from="1553761134917" duration="6091000" />
-      <workItem from="1553845034207" duration="7653000" />
+      <workItem from="1553845034207" duration="8465000" />
+      <workItem from="1554101574147" duration="5608000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37116000" />
+    <option name="totallyTimeSpent" value="43536000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.071127504" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1150033" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -242,7 +294,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32321042" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24539007" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -287,17 +339,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/files/.gitkeep">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/video.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
-        </state>
+        <state relative-caret-position="-276" />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/videoFiles/.gitkeep">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="159">
+          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/fluent-ffmpeg/lib/options/inputs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2668">
+          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="130" column="42" selection-start-line="130" selection-start-column="42" selection-end-line="130" selection-end-column="42" />
         </state>
       </provider>
     </entry>

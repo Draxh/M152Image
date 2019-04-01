@@ -19,7 +19,7 @@
                     <label>Upload one Image
                         <input name="file" type="file" size="50">
                     </label>
-                    <button>Upload</button>
+                    <button href="/image/gallery">Upload</button>
                 </form>
             </div>
         </div>
@@ -34,19 +34,12 @@
                     <label>Upload multiple Images
                         <input name="files" type="file" size="50" multiple>
                     </label>
-                    <button>Upload</button>
+                    <button href="/image/gallery">Upload</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<% for (var file of myFiles) { %>
-    <img class="materialboxed" width="650" src="../../files/<%= file %>">
-<% } %>
-
 </body>
 </html>
-
-
-
