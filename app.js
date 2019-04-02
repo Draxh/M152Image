@@ -86,6 +86,7 @@ function checkVideoFileType(file, cb){
 // App
 const app = express();
 app.use('/files', express.static(__dirname + '/files'));  // The images are public they can be seen on the web
+app.use('/videoFiles', express.static(__dirname + '/videoFiles'));  // The images are public they can be seen on the web
 app.listen(process.env.PORT || 80, () => console.log('Server started'));
 
 
@@ -141,6 +142,7 @@ function convertVideo(files, name, res){
         })
         .on('end', function() {
             console.log('Finished!');
+
         });
 }
 
@@ -175,8 +177,8 @@ function getImages() {
 }
 
 app.get('/play_video', function (req, res) {
-    //res.render('playVideo')
-    res.send("Hallo " + req.query.videoName)
+    //res.send("Hallo " + req.query.videoName);
+    res.render('playVideo', { video : req.query.videoName });
 });
 
 app.get('/image/gallery', function(req, res) {
