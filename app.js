@@ -8,9 +8,6 @@ const fluent_ffmpeg = require("fluent-ffmpeg");
 
 var mergedVideo = fluent_ffmpeg();
 
-fluent_ffmpeg.setFfprobePath("c:\\ffmpeg\\bin\\ffprobe.exe");
-fluent_ffmpeg.setFfmpegPath("c:\\ffmpeg\\bin\\ffmpeg.exe");
-
 
 
 // Set The Storage Engine
