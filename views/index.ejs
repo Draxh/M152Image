@@ -34,12 +34,16 @@
                     <label>Upload multiple Images
                         <input name="files" type="file" size="50" multiple>
                     </label>
-                    <button href="/image/gallery">Upload</button>
+                    <button>Upload</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<% for (let image of myFiles) { %>
+      <img src=’../files/<%= image %>’>
+<% } %>
 
 </body>
 </html>

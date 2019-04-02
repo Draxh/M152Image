@@ -8,6 +8,9 @@ const fluent_ffmpeg = require("fluent-ffmpeg");
 
 var mergedVideo = fluent_ffmpeg();
 
+fluent_ffmpeg.setFfprobePath("c:\\ffmpeg\\bin\\ffprobe.exe");
+fluent_ffmpeg.setFfmpegPath("c:\\ffmpeg\\bin\\ffmpeg.exe");
+
 
 
 // Set The Storage Engine
@@ -111,24 +114,28 @@ app.post('/api/files', (req, res) => {      // Multi Upload
     });
 });
 
-app.post('/api/videos', (req, res) => {      // Multi Upload
+app.post('/api/videos', (req, res) => {
+    // Multi Upload
+    //console.log(req);
     multiVideoUpload(req, res, (err) => {
         if(err){
             res.sendStatus(400)
         } else {
             res.sendStatus(201);
-            convertVideo(req.files, res);
+            convertVideo(req.files, req.body.name, res);
         }
     });
 });
 
-function convertVideo(files, res){
+function convertVideo(files, name, res){
     console.log(files);
+    // var videoName = document.getElementById("mergedVideoName").innerT ext;
     files.forEach(function(file){
-        mergedVideo = mergedVideo.addInput(file.originalname);
+        mergedVideo = mergedVideo.addInput(file.path);
+        console.log(file.path);
     });
 
-    mergedVideo.mergeToFile('./videoFiles/')
+    mergedVideo.mergeToFile('./videoFiles/' + name + ".mp4" )
         .on('error', function(err) {
             console.log('Error ' + err.message);
         })
@@ -136,6 +143,7 @@ function convertVideo(files, res){
             console.log('Finished!');
         });
 }
+
 
 
 const mySizes = [720, 1280, 1920];
@@ -165,6 +173,11 @@ app.set('view engine', 'ejs');
 function getImages() {
     return fs.readdirSync('./files/');
 }
+
+app.get('/play_video', function (req, res) {
+    //res.render('playVideo')
+    res.send("Hallo " + req.query.videoName)
+});
 
 app.get('/image/gallery', function(req, res) {
     res.render('index', {myFiles: getImages()})
