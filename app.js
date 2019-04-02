@@ -186,4 +186,4 @@ app.get('/video_manager', function(req, res) {
 });
 
 
-
+app.use(express.static(__dirname + '/views'));
