@@ -188,9 +188,9 @@ app.get('/video_manager', function(req, res) {
 app.get('/start', function(req, res) {
     res.render('start')
 });
-app.get('*', function(req, res) {
+/*app.get('*', function(req, res) {
     res.redirect('/start');
-});
+});*/
 
 
 app.use(express.static(__dirname + '/views'));
