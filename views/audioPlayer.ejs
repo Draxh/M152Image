@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show Audios</title>
+</head>
+<body>
+
+<div class="audio">
+    <audio controls class="audioPlayer">
+        <source src="../audioFiles/vttToAudioFiles/<%= audio %>">
+        <track src="../audioFiles/vttToAudioFiles/<%= vtt %>.vtt" kind="subtitles" srclang="de" label="German">
+        Your browser does not support the audio tag.
+    </audio>
+</div>
+
+<div class="video">
+    <video height="300" width="800" controls class="videoPlayer" style="border-color: white;">
+        <source src="../audioFiles/blank.mp4">
+        <track src="../audioFiles/vttToAudioFiles/myFile.vtt" kind="subtitles" srclang="de" label="German" style="color: black;">
+        Your browser does not support the audio tag.
+    </video>
+</div>
+
+<p><%= audio %></p>
+<p><%= vtt %>.vtt</p>
+</body>
+</html>

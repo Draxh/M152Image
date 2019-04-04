@@ -6,6 +6,17 @@ html {
     box-sizing: inherit;
 }
 
+#subtitles {
+    background-color: black;
+    font-size: 23px;
+    color: white;
+    padding: 2px;
+    opacity: 0.9;
+    min-width: 0px;
+    max-width: 460px;
+    min-height: 20px;
+}
+
 body {
     margin: 0;
     padding: 0;

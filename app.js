@@ -25,6 +25,13 @@ const videostorage = multer.diskStorage({
     }
 });
 
+const audiostorage = multer.diskStorage({
+    destination: './audioFiles',                             // Where the file will be saved
+    filename: function(req, file, cb){
+        cb(null, file.originalname);                        // This is the filename that will be saved
+    }
+});
+
 
 // Init Upload
 const singleUpload = multer({
@@ -47,6 +54,10 @@ const multiVideoUpload = multer({
     fileFilter: function (req, file, cb) {
         checkVideoFileType(file, cb)
     }
+}).array('files', 20);
+
+const audioUpload = multer({
+    storage: audiostorage
 }).array('files', 20);
 
 // Check File Type
@@ -83,7 +94,8 @@ function checkVideoFileType(file, cb){
 // App
 const app = express();
 app.use('/files', express.static(__dirname + '/files'));  // The images are public they can be seen on the web
-app.use('/videoFiles', express.static(__dirname + '/videoFiles'));  // The images are public they can be seen on the web
+app.use('/videoFiles', express.static(__dirname + '/videoFiles'));  // The videos are public they can be seen on the web
+app.use('/audioFiles', express.static(__dirname + '/audioFiles'));  // The audios are public they can be seen on the web
 app.listen(process.env.PORT || 80, () => console.log('Server started'));
 
 
@@ -112,9 +124,23 @@ app.post('/api/files', (req, res) => {      // Multi Upload
     });
 });
 
+app.post('/api/audio', (req, res) => {
+    // audio Upload
+    audioUpload(req, res, (err) => {
+        if(err){
+            res.sendStatus(400)
+        } else {
+            res.json({
+                audio: req.files[0].path,
+                vtt: req.files[1].path
+            });
+            audioVtt(req.files[0].originalname, req.files[1].originalname)
+        }
+    });
+});
+
 app.post('/api/videos', (req, res) => {
-    // Multi Upload
-    //console.log(req);
+    // Video Upload
     multiVideoUpload(req, res, (err) => {
         if(err){
             res.sendStatus(400)
@@ -144,6 +170,38 @@ function convertVideo(files, name, res){
 }
 
 
+function audioVtt(audioName, vttName){
+
+    var reg =  audioName.match(/([^.]+)/);
+    console.log("realName: " + audioName);
+    var audioFilename = reg.toString().split(',').pop();
+    console.log(audioName);
+    console.log(audioFilename);
+
+
+    fs.rename('./audioFiles/'+ audioName, './audioFiles/vttToAudioFiles/' + audioName, (err) => {
+    if(err){
+        console.log(err);
+    } else {
+        console.log("Yes");
+    }
+});
+fs.rename('./audioFiles/'+ vttName, './audioFiles/vttToAudioFiles/' + audioFilename + ".vtt", (err) => {
+    if(err){
+        console.log(err);
+    } else {
+        console.log("yess");
+    }
+});
+
+}
+
+function getVttFile(audioName){
+    var reg =  audioName.match(/([^.]+)/);
+    var audioFilename = reg.toString().split(',').pop();
+    console.log(audioFilename);
+    return audioFilename;
+}
 
 const mySizes = [720, 1280, 1920];
 const myImgSizeNames = ['small_', 'medium_', 'big_'];
@@ -181,12 +239,22 @@ app.get('/play_video', function (req, res) {
 app.get('/image/gallery', function(req, res) {
     res.render('index', {myFiles: getImages()})
 });
+
 app.get('/video_manager', function(req, res) {
     res.render('video')
 });
 
+app.get('/audio-player', function(req, res) {
+    var vtt = getVttFile(req.query.audioName);
+    res.render('audioPlayer', { audio : req.query.audioName , vtt: vtt });
+});
+
 app.get('/start', function(req, res) {
     res.render('start')
+});
+
+app.get('/audio-manager', function(req, res) {
+    res.render('audioManager')
 });
 /*app.get('*', function(req, res) {
     res.redirect('/start');
@@ -194,3 +262,4 @@ app.get('/start', function(req, res) {
 
 
 app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/audioFiles/vttToAudioFiles'));

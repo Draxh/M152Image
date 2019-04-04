@@ -8,6 +8,11 @@ const fullscreen = player.querySelector('.player__fullscreen');
 const skipButtons = player.querySelectorAll('[data-skip]');
 const ranges = player.querySelectorAll('.player__slider');
 
+
+document.getElementById('audioPlayer').textTracks[0].addEventListener('cuechange', function() {
+    document.getElementById('subtitles').innerHTML = this.activeCues[0].text;
+});
+
 // build functions
 function togglePlay() {
     if (video.paused) {
