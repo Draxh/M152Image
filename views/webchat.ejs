@@ -26,7 +26,8 @@
 
 <script>
 
-    var socket = new WebSocket("ws://fynn152.herokuapp.com");
+    //var socket = new WebSocket("ws://localhost:8999");
+    var socket = new WebSocket("wss://fynn152.herokuapp.com");
 
 
     socket.onopen = function (event) {

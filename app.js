@@ -254,7 +254,7 @@ app.get('/audio-player', function(req, res) {
     res.render('audioPlayer', { audio : req.query.audioName , vtt: vtt });
 });
 
-app.get('/start', function(req, res) {
+app.get('', function(req, res) {
     res.render('start')
 });
 
