@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/css/froala_editor.pkgd.min.css" rel="stylesheet"
+          type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/css/froala_style.min.css" rel="stylesheet"
+          type="text/css" />
+</head>
+
+<body>
+<div>
+    <main class="mdl-layout__content">
+                    <center>
+                        <form enctype="multipart/form-data" onsubmit="return false">
+                                <input type="text" id="username" name="username">
+                                <label for="username">Gib bitte deinen Namen ein</label>
+                            <textarea name="message" id="message" rows="3" placeholder="Deine Nachricht"></textarea>
+                            <button id="submit" type="submit">send</button>
+                        </form>
+                    </center>
+                <div class="received-messages" id="received-messages">
+                    </div>
+
+
+<script>
+
+    var socket = new WebSocket("ws://fynn152.herokuapp.com");
+
+
+    socket.onopen = function (event) {
+        socket.send("Here's some text!");
+    };
+
+
+    var message = document.querySelector("#message");
+    var username = document.querySelector("#username");
+    document.querySelector("#submit").addEventListener('click', function () {
+        socket.send(username.value);
+        socket.send(message.value);
+    });
+    socket.onmessage = function (event) {
+        console.log(event.data);
+        document.querySelector(".received-messages").innerHTML = document.querySelector(".received-messages").innerHTML + `<p>${event.data}</p>`;
+    }
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/js/froala_editor.pkgd.min.js"></script>
+
+<script> $(() => {
+        $('textarea').froalaEditor();
+    });
+</script>
+</body>

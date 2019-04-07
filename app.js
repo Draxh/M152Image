@@ -5,10 +5,16 @@ const gm = require('gm');
 const ejs = require('ejs');
 const fs = require('fs');
 const fluent_ffmpeg = require("fluent-ffmpeg");
+const app = express();
+const WebSocket = require('ws');
+const http = require('http');
+const server = http.createServer(app);
+const port = process.env.PORT || 80;
+const wss = new WebSocket.Server({ server: server });
 
 var mergedVideo = fluent_ffmpeg();
 
-
+server.listen(process.env.PORT || 8999, () => {});    console.log(`Server started on port ${server.address().port} :)`);
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
@@ -92,11 +98,10 @@ function checkVideoFileType(file, cb){
 }
 
 // App
-const app = express();
 app.use('/files', express.static(__dirname + '/files'));  // The images are public they can be seen on the web
 app.use('/videoFiles', express.static(__dirname + '/videoFiles'));  // The videos are public they can be seen on the web
 app.use('/audioFiles', express.static(__dirname + '/audioFiles'));  // The audios are public they can be seen on the web
-app.listen(process.env.PORT || 80, () => console.log('Server started'));
+app.listen(port, () => console.log('Server started'));
 
 
 app.post('/api/file', (req, res) => {       // Single Upload
@@ -263,3 +268,54 @@ app.get('/audio-manager', function(req, res) {
 
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/audioFiles/vttToAudioFiles'));
+
+
+
+app.get('/webchat', (req, res) => {
+    res.render('webchat');
+});
+
+
+wss.on('connection', function (ws) {
+    wss.clients.forEach(function (client) {
+            client.send(JSON.stringify({
+                username: "Username",
+                message: 'Hello new User!'
+            }));
+        });
+
+    ws.on('pong', () => {
+        ws.isAlive = true;
+    });
+
+    ws.on('message', function (data) {
+        if (data == "Here's some text!") {
+            ws.send(JSON.stringify({
+                username: "Username",
+                message: "Connection successful!"
+            }))
+        } else {
+            wss.clients.forEach(function (client) {
+                    if (client !== ws) {
+                        client.send("" + data);
+                    }
+                    else {
+                        ws.send(data);
+                    }
+                });
+        }
+
+    });
+
+    setInterval(() => {
+
+        for (var i=0, l = wss.clients.length; i < l; ++i) {
+
+            if (!ws.isAlive) return ws.terminate();
+
+            ws.isAlive = false;
+            ws.ping(null, false, true);
+
+        }
+    }, 15000);
+});
