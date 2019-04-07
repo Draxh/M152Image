@@ -9,12 +9,12 @@ const app = express();
 const WebSocket = require('ws');
 const http = require('http');
 const server = http.createServer(app);
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8999;
 const wss = new WebSocket.Server({ server: server });
 
 var mergedVideo = fluent_ffmpeg();
 
-server.listen(8999, () => {});    console.log(`Server started on port ${server.address().port} :)`);
+server.listen(port, () => {});    console.log(`Server started on port ${server.address().port} :)`);
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
@@ -101,7 +101,7 @@ function checkVideoFileType(file, cb){
 app.use('/files', express.static(__dirname + '/files'));  // The images are public they can be seen on the web
 app.use('/videoFiles', express.static(__dirname + '/videoFiles'));  // The videos are public they can be seen on the web
 app.use('/audioFiles', express.static(__dirname + '/audioFiles'));  // The audios are public they can be seen on the web
-app.listen(port, () => console.log('Server started'));
+//app.listen(port, () => console.log('Server started'));
 
 
 app.post('/api/file', (req, res) => {       // Single Upload
