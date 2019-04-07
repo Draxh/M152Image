@@ -14,7 +14,7 @@ const wss = new WebSocket.Server({ server: server });
 
 var mergedVideo = fluent_ffmpeg();
 
-server.listen(process.env.PORT || 8999, () => {});    console.log(`Server started on port ${server.address().port} :)`);
+server.listen(8999, () => {});    console.log(`Server started on port ${server.address().port} :)`);
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
